@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url(./util/img-2.jpg);
+    background-size:cover;
+    background-blend-mode: overlay;
+    background-color:rgba(0, 0, 0, 0.6);
+    height: 100vh;
+    background-position: center;
+    text-align: center;
+}
+
+/* navbar */
+.navbar {
+    height: 70px;
+    background-color: rgb(95, 2, 129);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2px 4px;
+}
+
+.nav-logo {
+    height: 60px;
+    width: 100px;
+}
+
+.logo {
+    background-image: url("./util/EduScan-logo.jpg");
+    height: 55px;
+    width: 55px;
+    background-size: cover;
+    position: absolute;
+    top: 8px;
+    left: 20px;
+}
+
+.border {
+    border: 1.5px solid transparent;
+}
+.border:hover {
+    border: 1.5px solid white;
+}
+
+.eduscan-text {
+    position: absolute;
+    top: 22px;
+    right: 1190px;
+    color: #efefde;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.home-button {
+    position: absolute;
+    align-items: right;
+    top: 20px;
+    right: 50px;
+    text-decoration: none;
+    background-color:  rgb(76, 0, 103);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.login-button {
+    position: absolute;
+    align-items: right;
+    top: 20px;
+    right: 210px;
+    text-decoration: none;
+    background-color:rgb(76, 0, 103);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+/*About-section*/
+.about-section{
+    height: 600px;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 15px 15px 15px;
+    margin-top: 30px;
+    border-radius: 25px;
+    margin-left: 250px;
+    margin-right: 10px;
+}
+
+.about-section h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 13px;
+}
+
+.content {
+    text-align: justify;
+    font-size: 16px;
+    margin: 12px;
+    font-family: "poppins";
+}
+
+hr{
+    width: 110px;
+    margin: 10px auto;
+}
+
+/* Our Team*/
+
+.our-team{
+    height: 420px;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.45);
+    padding: 15px 15px 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    margin-left: 250px;
+    margin-right: 10px;
+}
+
+.our-team h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+img{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 20px;
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.members {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.team-mem {
+    font-size: 15px;
+    font-family: "poppins";
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.our-team h1{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.team-mem h3{
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.team-mem h4{
+    text-align: center;
+    font-size: 13px;
+    margin: 5px;
+}
+
+.team-mem p{
+    text-align: center;
+    font-size: 15px;
+    margin: 12px;
+}
+
+/* Footer */
+
+.foot-panel2 {
+    background-color:rgb(95, 2, 129);
+    color: white;
+    height: 70px;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.pages {
+    padding-top: 25px;
+}
+
+.copyright {
+    padding-top: 5px;
+}

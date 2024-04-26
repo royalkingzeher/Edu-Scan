@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/signinstyle.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo"></div>
+            </div> 
+            <div class="eduscan-text">EduScan</div>
+            <a href="/LandingPage.html" class="home-button border">Home</a>
+            <a href="About.html" class="about-button border">About Us</a>
+        </div>
+    </header>  
+
+
+    <div class="sign-in-form">
+        <img src="./util/user-Icon.png">
+        <h2>Enter your Credentials</h2>
+        <form>
+            <label for="email">Email:</label>
+            <input id="email" type="email" class="input-box" placeholder="Your Email">
+            <label for="password">Password:</label>
+            <input id="password" type="password" class="input-box" placeholder="Your Password">
+            <button id='login-button' class="login border" type="button">Log In</button>
+            <br>
+            <div class="link">
+                <a href="Signup.html" style="color:black">SignUp</a>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        function authenticateuser() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (email === "" || password === "") {
+                alert('Please enter both email and password.');
+                return;
+            } else {
+                const secure = {
+                    email: email,
+                    password: password,
+                };
+
+                fetch('/authenticateuser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(secure)
+                }).then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/HomePage.html';
+                    } else {
+                        response.text().then(text => {
+                            alert("Wrong E-mail and/or password");
+                        });
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+
+        window.onload = function() {
+            document.getElementById('login-button').addEventListener('click', authenticateuser);
+        };
+    </script>
+</body>
+</html>

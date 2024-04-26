@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ PAGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./FAQstyle.css">
+</head>
+
+<body>
+        
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo"></div>
+            </div> 
+            <div class="eduscan-text">EduScan</div>
+            <a href="./Signin.html" class="login-button border">Login</a>
+            <a href="./About.html" class="about-button border">About Us</a>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="container">
+            <h3>How can we help you?</h3>
+        
+            <div class="form-container">
+                <form>
+                  <input type="text" placeholder="Enter your question here..." class="text-input">
+                  <button type="submit" class="submit-button">Submit</button>
+                </form>
+              </div>
+
+    </div>
+
+        <h1 class="faq-heading">FAQ'S</h1>
+
+        <section class="faq-container">
+
+            <div class="faq-one">
+                <h1 class="faq-page">1. What is EduScan?</h1>
+
+                <div class="faq-body">
+                    <p>EduScan is an educational platform dedicated to providing quality and animated educational content for primary students, particularly in rural areas.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-two">
+                <h1 class="faq-page">2. Who can benefit from EduScan?
+
+                </h1>
+
+                <div class="faq-body">
+                    <p>EduScan is designed to benefit primary students, teachers, parents, and educational institutions seeking innovative and engaging learning resources.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-three">
+            <h1 class="faq-page">3. How does animated content benefit student learning?</h1>
+
+                <div class="faq-body">
+                    <p>Animated content on EduScan brings educational concepts to life, making learning more interactive, engaging, and memorable for students of all ages.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-four">
+            <h1 class="faq-page">4. What subjects does EduScan cover?</h1>
+
+                <div class="faq-body">
+                    <p>EduScan covers a wide range of subjects including Mathematics, Science, English, Social Studies, General Knowledge and more, tailored to primary school curriculum standards.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-five">
+            <h1 class="faq-page">5. Is EduScan suitable for remote learning?</h1>
+
+                <div class="faq-body">
+                    <p>Yes, EduScan leverages technology to facilitate remote learning, enabling students to access educational content from anywhere with an internet connection.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-six">
+            <h1 class="faq-page">6. Can schools integrate EduScan into their existing curriculum?</h1>
+
+                <div class="faq-body">
+                    <p>Yes, schools can seamlessly integrate EduScan into their existing curriculum, complementing traditional teaching methods with interactive and engaging digital resources.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-seven">
+            <h1 class="faq-page">7. Is EduScan completely free to use?</h1>
+
+                <div class="faq-body">
+                    <p>Yes, EduScan offers a free basic version with access to a limited range of educational content and features.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+
+            <div class="faq-eight">
+            <h1 class="faq-page">8. How can I provide feedback or suggestions for improvement to EduScan?</h1>
+
+                <div class="faq-body">
+                    <p>Users can provide feedback and suggestions for improvement directly through the EduScan platform or by contacting the support team via email or phone.</p>
+                </div>
+            </div>
+
+            <hr class="hr-line">
+       
+        </section>
+    </main>
+
+    <footer>
+        
+        <div class="foot-panel2">
+            <div class="pages">
+                <a>Conditions of use | Privacy Notice</a>
+            </div>
+            <div class="copyright">
+                © Copyright 2023 India - All Rights Reserved
+            </div>
+        </div>
+
+    </footer>
+    
+    <script src="./FAQ.js"></script>
+
+
+<script>
+        function question(){
+            const ques=document.getElementById("search-input").value
+            const data={
+                ques:ques
+            }
+            
+            if(ques==""){
+                alert("Enter a question")
+            }
+            else{
+                fetch('/ques', {
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                'body':JSON.stringify(data)    
+            }).then(response =>{
+                //  alert("We'll get back to you ASAP");
+                response.text();
+                console.log("working");
+            }).then(result=>console.log(result))
+            }
+        }
+
+        document.getElementById("search-button").addEventListener('click', question)
+</script>
+</body>
+
+
+</html>

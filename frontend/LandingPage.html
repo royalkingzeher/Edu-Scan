@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./LandingPage.css">
+    
+    <title>EduScan- Bridging Gaps in Villages</title>
+
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="nav-logo">
+                <div class="logo"></div>
+            </div> 
+            <div class="eduscan-text">EduScan</div>
+            <a href="./Signin.html" class="login-button border">Login</a>
+            <a href="./About.html" class="about-button border">About Us</a>
+        </div>
+
+
+        <div class="panel">
+            <a href="./Signin.html" style="text-decoration: none; color: #ffffff;">Resources</a>
+
+            <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">Classes
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="./Signin.html">Class-1</a>
+                    <a href="./Signin.html">Class-2</a>
+                    <a href="./Signin.html">Class-3</a>
+                    <a href="./Signin.html">Class-4</a>
+                    <a href="./Signin.html">Class-5</a>
+                </div>
+            </div> 
+
+            <a href="./Signin.html" style="text-decoration: none; color: #ffffff;">Survey</a>
+            <a href="./Signin.html" style="text-decoration: none; color: #ffffff;">Contact-us</a>
+
+        </div>
+
+    <script>
+        /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+    }
+  }
+    </script> 
+
+    </header>
+
+    <section class="edu-section">
+        <div class="edu-text">
+            <h1 style="font-size: 40px;">Welcome to EduScan- Bridging Gaps in Villages</h1>
+            <p style="font-size: 20px; margin: 10px 0px;">
+                An educational platform dedicated to provide qualitative and animated educational content for primary students
+            </p>
+            <button class="divein-button border">
+                <a href="./Signin.html" style="text-decoration: none; color: whitesmoke;">Dive-in</a>    
+            </button>
+
+
+        </div>
+    </section>
+
+        
+    
+    <footer>
+        <div class="foot-panel1">
+            <ul>
+                <p>Get to Know Us</p>
+                <a href="./About.html" style="text-decoration: none;">About EduScan</a>
+                <a href="./FAQ.html" style="text-decoration: none;">FAQ</a>
+                <a href="./Signin.html" style="text-decoration: none;">Survey</a>
+            </ul>
+            <ul>
+                <p>Useful Links</p>
+                <a href="./HomePage.html" style="text-decoration: none;">Home</a>
+                <a href="./Signin.html" style="text-decoration: none;">Login</a>
+                <a href="./Signin.html" style="text-decoration: none;">Classes</a>
+            </ul>
+            <ul>
+                <p>Contact Us</p>
+                <a>Support | Helpdesk</a>
+                <a><i class="fa-solid fa-phone"></i> +91-7427837185</a>
+                <a><i class="fa-solid fa-phone"></i> +91-9119759446</a>
+                <a><i class="fa-regular fa-envelope"></i> support@eduscan.com</a>
+            </ul>
+        </div>
+
+        <div id="contactSection">
+        </div>
+
+        <div class="foot-panel2">
+            <div class="pages">
+                <a>Conditions of use | Privacy Notice</a>
+            </div>
+            <div class="copyright">
+                © Copyright 2023 India - All Rights Reserved
+            </div>
+        </div>
+
+    </footer>
+</body>
+</html>
