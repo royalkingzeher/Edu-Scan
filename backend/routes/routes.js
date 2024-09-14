@@ -15,7 +15,7 @@ const __dirname=path.dirname(__filename)
 app.use(express.urlencoded({extended:false}))
 
 
-await mongoose.connect("mongodb+srv://anushksanghvi:Anushk2105@cluster0.uwfzaxf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(() =>{console.log("connected to database successfully")}).catch((error)=> {console.log("error in connecting to database" , error)})
+await mongoose.connect("mongodb+srv://raghavmittal26113:4Jd736HENz54jnux@cluster0.uwfzaxf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(() =>{console.log("connected to database successfully")}).catch((error)=> {console.log("error in connecting to database" , error)})
 
 app.use(express.json())
 
