@@ -1,113 +1,107 @@
-import express from 'express'
-import session from 'express-session'
-import path from 'path'
-import {fileURLToPath} from 'url'
-import multer from 'multer'
-import mongoose from 'mongoose'
-import {register} from './schema.js'
-import bcrypt from 'bcrypt'
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+import { register } from './schema.js'; // Assuming schema.js contains your Mongoose schema
+import bcrypt from 'bcrypt';
 
-const app=express()
-const router=express.Router()
-        
-const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename)
-app.use(express.urlencoded({extended:false}))
+// Initialize Express app
+const app = express();
+const router = express.Router();
 
+// For file path handling
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-await mongoose.connect("mongodb+srv://anushksanghvi:Anushk2105@cluster0.uwfzaxf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(() =>{console.log("connected to database successfully")}).catch((error)=> {console.log("error in connecting to database" , error)})
+// Middleware for parsing incoming requests
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.use(express.json())
+// MongoDB Connection Setup
+const uri = "mongodb+srv://raghavmittal26113:BJihQ5ogfkMlpy3C@cluster0.upddy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
-router.get('/',(req,res)=>{                                                           
-    res.sendFile(path.join(__dirname,'../../frontend/LandingPage.html'))              //homepage
-})
-
-// router.get('/signin' ,(req,res)=>{
-//     res.sendFile(path.join(__dirname,'../../frontend/Signin.html'))                  //loginpage
-// })
-// router.get('/signup',(req,res)=>{                                                     //signuppage
-//     res.sendFile(path.join(__dirname,'../../frontend/Signup.html'))
-// })
-
-// router.get('/homebuyer',(req,res) =>{                                                 //homepage of buyer
-//     res.sendFile(path.join(__dirname,`../../frontend/homepagebuyers.html`))
-// })
-
-// router.get('/about',(req,res) =>{                                                     //aboutpage
-//     res.sendFile(path.join(__dirname,'../../frontend/About.html'))
-// })
- 
-// router.get('/sell',(req,res) =>{                                                      //homepage of seller
-//     res.sendFile(path.join(__dirname,'../../frontend/Sellerlandingpage.html'))
-// })
-
-
-router.post('/submit', async(req,res) =>{                                             //fetch of signup page
-    const userData=req.body
-    console.log(userData)
-    const verifyemail=userData.email
-
-    const existing_user=await register.findOne({email:verifyemail})
-
-    if(existing_user){
-        console.log('email already exists')
-        res.send("Email already exists, Signin")
-        return
-    }
-
-    const newuserdata=new register({
-        name:userData.name,
-        email:userData.email,
-        password:userData.password
-    })
-
-    await newuserdata.save().then(() => console.log('User registered')).catch(() => console.log("error registering"))
-
-    res.send('Data received and user registered')
-})
-
-router.post('/authenticateuser', async(req,res) =>{                                //fetch of signin page
-    const authenticate=req.body
-    // console.log(authenticate)
-
-    const check_email=authenticate.email
-    const verify_password=authenticate.password
-
-    const verify_email = await register.findOne({email:check_email})
-
-
-    if(!verify_email){
-        res.status(400).send("Wrong E-mail or Password")
-        return
-    }
-    else{
-
-   if(verify_password === verify_email.password){
-    // res.status=200
-
-    // req.session.email=verify_email
-    
-    res.status(200).send('Successful User')
-    return  
-   }
-   else{
-    console.log("Wrong e-mail or password")
-    res.status(400).send("Wrong e-mail or password")
-    return 
-   }
+// MongoDB connection and ping test
+async function connectMongoDB() {
+  try {
+    // Connect the client to the server
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } catch (error) {
+    console.error("Error connecting to MongoDB: ", error);
+  }
 }
-})
 
-// router.post('/ques', async(req,res)=>{
-//     const saveques = new ques({
-//         email:req.session.email.email,
-//         ques:req.body.ques
-//     })
-//     await saveques.save().then(() => console.log('Question registered')).catch(() => console.log("Not registered Question"))
-//     res.send("Ques saved")
-// })
+// Run MongoDB connection function
+connectMongoDB();
 
+// Routes
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/LandingPage.html')); // Homepage
+});
 
+router.post('/submit', async (req, res) => {  // Fetch of signup page
+  const userData = req.body;
+  console.log(userData);
+  const verifyemail = userData.email;
 
-export default router
+  // Check if email already exists in the database
+  const existing_user = await register.findOne({ email: verifyemail });
+
+  if (existing_user) {
+    console.log('Email already exists');
+    res.send("Email already exists, Signin");
+    return;
+  }
+
+  // Save new user to the database
+  const newuserdata = new register({
+    name: userData.name,
+    email: userData.email,
+    password: userData.password // Ensure password hashing is done if needed
+  });
+
+  await newuserdata.save()
+    .then(() => console.log('User registered'))
+    .catch((error) => console.log("Error registering: ", error));
+
+  res.send('Data received and user registered');
+});
+
+router.post('/authenticateuser', async (req, res) => { // Fetch of signin page
+  const authenticate = req.body;
+  const check_email = authenticate.email;
+  const verify_password = authenticate.password;
+
+  // Check if the email exists in the database
+  const verify_email = await register.findOne({ email: check_email });
+
+  if (!verify_email) {
+    res.status(400).send("Wrong E-mail or Password");
+    return;
+  }
+
+  // Check password
+  if (verify_password === verify_email.password) {
+    res.status(200).send('Successful User');
+    return;
+  } else {
+    console.log("Wrong e-mail or password");
+    res.status(400).send("Wrong e-mail or password");
+    return;
+  }
+});
+
+// Initialize Express to listen on port 3000
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
