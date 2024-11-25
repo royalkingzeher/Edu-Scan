@@ -1,1 +1,1 @@
-# Edu-Scan
+Vidya-मित्रम् 
